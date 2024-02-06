@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { ModuleWithProviders, createComponent } from "@angular/core"; 
+import { ModuleWithProviders } from "@angular/core";
 import { AboutComponent } from './components/about/about.component';
 import { ProjectsComponent } from './components/projects/projects.component';
 import { ContactComponent } from './components/contact/contact.component';
@@ -15,7 +15,8 @@ export const routes: Routes = [
     {path:'contacto', component:ContactComponent},
     {path:'crear-proyecto', component: CreateComponent},
     {path:'proyecto/:id', component:DetailComponent},
-    {path:'editar-proyecto', component: EditComponent},
+    {path:'editar-proyecto/:id', component: EditComponent},
+    {path:'error', component:ErrorComponent},
     {path:'**', component: AboutComponent}
     
 ];
@@ -24,4 +25,6 @@ export const routes: Routes = [
     imports: [RouterModule.forRoot(routes)],
     exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class RoutesModule{}
+export const appRoutingProviders: any [] = []; //Exportar el servicio de rutas:
+export const routing: ModuleWithProviders<any> = RouterModule.forRoot(routes);//yExportar el routing
