@@ -1,0 +1,60 @@
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { Project } from '../models/project';
+import { Global } from './global';
+
+@Injectable()
+
+export class ProjectService{
+    //Propiedad para guardar la url de la api
+    public url: string;
+
+    constructor(
+        private _http:HttpClient //cargo el httpclient como propiedad privada
+    ){
+        //Valor a la url dado en la variable del archivo global
+        this.url = Global.url;
+
+    }testService(){
+        return 'Probando el servicio de Angular'
+
+    }saveProject(project:Project): Observable<any>{
+        let params = JSON.stringify(project);
+        let headers = new HttpHeaders().set('Content-Type', 'application/json');
+
+        return this._http.post(this.url+'save-project', params, {headers:headers});
+
+    }getProjects():Observable<any>{
+        let headers = new HttpHeaders().set('Content-Type', 'application/json');
+
+        return this._http.get(this.url+'projects', {headers:headers});
+
+    }//Crear el método getProject, se pasa como parámetro un id para buscar en la base de datos
+    getProject(id:any):Observable<any>{
+        /*A la variable headers se le establece un tipo de contenido y se le manda como un objeto JSON */
+        let headers = new HttpHeaders().set('Content-Type', 'application/json');
+
+        //Se hace una petición por get, se le pasa la url de la api y al segmento de la ruta que es project
+        return this._http.get(this.url+ 'project/'+id,{headers:headers});
+
+    }//Método para borrar un proyecto
+    deleteProject(id:any):Observable<any>{
+      /*A la variable headers se le establece un tipo de contenido y se le manda como un objeto JSON */
+        let headers = new HttpHeaders().set('Content-Type', 'application/json');
+
+        return this._http.delete(this.url+'project/'+id ,{headers:headers});
+
+    }updateProject(project:any): Observable<any>{
+      //Crear una variable params para convertir el proyecto a un JSON string
+        let params = JSON.stringify(project)
+
+      /*A la variable headers se le establece un tipo de contenido y se le manda como un objeto JSON */
+        let headers = new HttpHeaders().set('Content-Type', 'application/json');
+
+      //Se hará con un método put, ya que este sirve para actualizar un recurso en el backend
+        return this._http.put(this.url+'project/'+project._id, params, {headers: headers});
+
+    }
+
+}

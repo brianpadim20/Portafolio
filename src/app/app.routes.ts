@@ -10,14 +10,14 @@ import { EditComponent } from './components/edit/edit.component';
 import { ErrorComponent } from './components/error/error.component';
 
 export const routes: Routes = [
-    {path:'', component: AboutComponent},
-    {path:'sobre-mi', component: AboutComponent},
-    {path:'proyectos', component: ProjectsComponent},
-    {path:'contacto', component:ContactComponent},
-    {path:'crear-proyecto', component: CreateComponent},
-    {path:'proyecto/:id', component:DetailComponent},
-    {path:'editar-proyecto/:id', component: EditComponent},
-    {path:'**', component: ErrorComponent}
+    {path:'','title':'Soubre mi',component: AboutComponent},
+    {path:'sobre-mi','title':'Soubre mi', component: AboutComponent},
+    {path:'proyectos','title':'Proyectos', component: ProjectsComponent},
+    {path:'contacto','title':'Contacto', component:ContactComponent},
+    {path:'crear-proyecto','title':'Crear Proyecto', component: CreateComponent},
+    {path:'proyecto/:id','title':'Proyecto', component:DetailComponent},
+    {path:'editar-proyecto/:id','title':'Editar proyecto', component: EditComponent},
+    {path:'**','title':'Error', component: ErrorComponent}
     
 ];
 
