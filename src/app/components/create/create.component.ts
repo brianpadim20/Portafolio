@@ -7,6 +7,7 @@ import { Project } from '../../models/project';
 //Importo los servicios creados
 import { ProjectService } from '../../services/project.service';
 import { UploadService } from '../../services/upload.service';
+import { NgIf } from '@angular/common';
 
 //Importar la URL desde el archivo global para subir imagenes
 import { Global } from '../../services/global';
@@ -18,7 +19,8 @@ import { Global } from '../../services/global';
   standalone: true,
   imports:[
     FormsModule,
-  CommonModule
+  CommonModule, 
+  NgIf
   ],
   
   //Cargo los servicios dentro de la propiedad providers en el decorador
